@@ -37,7 +37,8 @@ class CashRegisterTest < Minitest::Test
   def test_prompt_for_payment
     transaction1 = Transaction.new(20)
     amount = StringIO.new("25.5\n")
-    transaction1.prompt_for_payment(input: amount)
+    output = StringIO.new
+    transaction1.prompt_for_payment(input: amount, output: output)
     assert_equal(25.5, transaction1.amount_paid)
   end
 end
