@@ -2,8 +2,9 @@ class Triangle
   attr_reader :kind, :sides
 
   def initialize(side1, side2, side3)
-    @sides = [side1, side2, side3] 
-    raise ArgumentError.new("Invalid side lengths") unless valid?
+    @sides = [side1, side2, side3]
+    raise ArgumentError, 'Invalid side lengths' unless valid?
+
     @kind = determine_kind
   end
 
@@ -27,10 +28,12 @@ class Triangle
     sides.uniq.size == 3
   end
 
+  # rubocop:disable Metrics/AbcSize
   def valid?
-    sides.all? { |side| side > 0 } &&
-    (sides[0] + sides[1]) > sides[2] &&
-    (sides[0] + sides[2]) > sides[1] &&
-    (sides[1] + sides[2]) > sides[0]
+    sides.all?(&:positive?) &&
+      (sides[0] + sides[1]) > sides[2] &&
+      (sides[0] + sides[2]) > sides[1] &&
+      (sides[1] + sides[2]) > sides[0]
   end
+  # rubocop:enable Metrics/AbcSize
 end

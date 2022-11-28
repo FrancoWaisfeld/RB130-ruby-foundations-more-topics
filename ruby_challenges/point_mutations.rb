@@ -2,7 +2,7 @@ class DNA
   def initialize(strand)
     @strand = strand
   end
-  
+
   def hamming_distance(mutated_strand)
     shorter_strand, longer_strand = [strand, mutated_strand].sort_by(&:size)
 

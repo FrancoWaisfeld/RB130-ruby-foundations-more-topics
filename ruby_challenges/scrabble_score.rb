@@ -1,23 +1,3 @@
-=begin
-
-input: string
-output: integer
-
-explicit rules
-- given a word, compute the Scrabble score
-
-implicit rules
-- create a Scrable class
-- create a constructor method that takes a string argument and saves it
-- create a score instance method that returns the Scrabble score of saved word
-- nil returns 0
-- case insensitive
-- whitespace returns 0
-- empty word returns 0
-
-
-=end
-
 class Scrabble
   TILE_SCORES = {
     'a' => 1,
@@ -48,9 +28,10 @@ class Scrabble
     'z' => 10
   }
   TILE_SCORES.default = 0
+  TILE_SCORES.freeze
 
   def initialize(word)
-    @word = word ? word : ''
+    @word = word || ''
   end
 
   def score
